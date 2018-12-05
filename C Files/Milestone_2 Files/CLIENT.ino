@@ -29,125 +29,21 @@ void setup() {
   Serial.println("MAC:" + WiFi.macAddress());
   Serial.print("Gateway:"); Serial.println(WiFi.gatewayIP());
   Serial.print("AP MAC:"); Serial.println(WiFi.BSSIDstr());
-  pinMode(D0, INPUT);
-  pinMode(D1, INPUT);
-  pinMode(D2, INPUT);
-  pinMode(D5, INPUT);
+
 }
 
 int opval()
-{
-  int totalval = 0;
-  if (digitalRead(D0) == HIGH){
-    totalval = totalval + 1;
-  }
-  if (digitalRead(D1) == HIGH){
-    totalval = totalval + 2;
-  }
-  if (digitalRead(D2) == HIGH){
-    totalval = totalval + 4;
-  }
-  if (digitalRead(D5) == HIGH){
-    totalval = totalval + 8;
-  }
-  return totalval; 
-}
+
 
 void loop() {
   client.connect(server, 80);
 
-  data = opval();
-  if (data > 0)
-  {
-    if (data == 8)
-    {
-      Send = "ADDC1\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-    }
-    else if (data == 9)
-    {
-      Send = "ADDC2\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-    }
-    else if (data == 10)
-    {
-      Send = "ADDC3\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-    }
-    else if (data == 11)
-    {
-      Send = "ADDC4\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-    }
-    else if (data == 4)
-    {
-      Send = "REMC1\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-    }
-    else if (data == 5)
-    {
-      Send = "REMC2\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-    }
-    else if (data == 6)
-    {
-      Send = "REMC3\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-    }
-    else if (data == 7)
-    {
-      Send = "REMC4\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-    }
-  }
-  else
-  {
-      Send = "NONE\r";
-      Serial.println("********************************");
-      Serial.print("Byte sent to the AP: ");
-      Serial.println(client.print(Send));
-      client.flush();
-      client.stop();
-      delay(1000);
-  }
+  Send = "NONE\r";
+  Serial.println("********************************");
+  Serial.print("Byte sent to the AP: ");
+  Serial.println(client.print(Send));
+  client.flush();
+  client.stop();
+  delay(1000);
+
 }
